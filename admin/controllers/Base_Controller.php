@@ -8,6 +8,7 @@ class Base_Controller extends CI_Controller {
     }
     public function base_fun()
     {
-        echo 'hello world';
+        echo 'base fun :w
+		hello world';
     }
 }
