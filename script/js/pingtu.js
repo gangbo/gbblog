@@ -2,11 +2,16 @@ $(function(){
 /**/
 var COUNT_X = 3;
 var path_log = new Array();
+var user_step_log = new Array();
+var is_start = false;
 path_log.push(IMG_ARR.length);
 $('.content img').bind('click',move);
-$('#disturb').bind('click',disturb);
+$('.disturb').bind('click',disturb);
 
 function move(event){
+    if(!is_start){
+        return;
+    }
     var target = event.target;
     var neighbors = getNeighbors(target);
     for(var i=0; i<neighbors.length;i++){
@@ -14,7 +19,12 @@ function move(event){
         if($(neighbor).attr('src') == 'xxx.gif'){
             $(neighbor).attr('src',$(target).attr('src')) 
             $(target).attr('src','xxx.gif');;
+            user_step_log.push(neighbors[i]);
         }
+    }
+    if(verify()){
+        var step_num = path_log.length - 1;
+        alert('你真是太厉害了,总共用了'+user_step_log.length+'步');
     }
 }
 function getNeighbors(element){
@@ -40,16 +50,25 @@ function getIndex(str){
    return +id;
 }
 function verify(){
-
+    for( var i=1; i<IMG_ARR.length; i++){
+        if($('#img_'+i).attr('src') != IMG_ARR[i-1]){
+           return false;
+        }
+    }
+    return true;
 }
-function disturb(){
+function disturb(e){
+    var level = $(e.target).attr('data-value');
+    for(var i=0;i<level;i++){
+        disturb_one();
+    }
+    is_start = true;
+}
+function disturb_one(e){
     var space = $('img[src="xxx.gif"]');
     var neighbors = getNeighbors(space);
     var neighbors_new = new Array();
     //去除前一步人位置
-    console.log('path-log==');
-    console.log(path_log);
-//    alert('111');
     for(var i=0;i<neighbors.length;i++){
         if(path_log[path_log.length-2] != neighbors[i]){
             neighbors_new.push(neighbors[i]);
