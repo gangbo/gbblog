@@ -1,0 +1,33 @@
+<html>
+<head>
+<style>
+.content img {
+    float:left;
+    border-style: solid;
+    border-width:1px 1px 1px 1px;
+    width: 111px;
+    height: 166px;
+}
+</style>
+<script>
+var IMG_ARR = <?php echo json_encode($img_arr)?>;
+</script>
+</head>
+<body>
+<div class="content" style="width:339px;height:500px">
+<?php
+$img_id = 1;
+foreach($img_arr as $img){
+    echo "<img id='img_$img_id' src='$img'/> ";
+    $img_id ++;
+}
+?>
+</div>
+<div>
+<input type="button" value="打乱" id="disturb"/>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/pingtu.js">
+</script>
+</html>
