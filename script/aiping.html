@@ -1,7 +1,8 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <style>
-.content img {
+.img_list img {
     float:left;
     border-style: solid;
     border-width:1px 1px 1px 1px;
@@ -9,31 +10,40 @@
     height: 166px;
 }
 </style>
+<link type="text/css" rel="stylesheet" href="static/css/index.css" />
+
 <script>
 var IMG_ARR = <?php echo json_encode($img_arr)?>;
 </script>
 </head>
 <body>
-<div class="content" style="width:339px;height:500px">
-<?php
-$img_id = 1;
-foreach($img_arr as $img){
-    echo "<img id='img_$img_id' src='$img'/> ";
-    $img_id ++;
-}
-?>
-</div>
-<div>
-<p> 玩法介绍：小时候玩的智力拼板,点击选择难度等级，然后将图片还原，就这么简单</p>
-</div>
-<div>
-<p>难度选择:</p>
-<input type="button" value="简单" class="disturb" data-value=5 />
-<input type="button" value="一般" class="disturb" data-value=15 />
-<input type="button" value="困难" class="disturb" data-value=50 />
-</div>
-<div>
-<p>更多玩法正在开发，敬请期待</p>
+<div class="page">
+    <div class="header">
+    <p>智力拼板</p> 
+    </div>
+    <div class="content" >
+        <div class="img_list" style="width:339px;">
+            <?php
+            $img_id = 1;
+            foreach($img_arr as $img){
+                echo "<img id='img_$img_id' src='$img'/> ";
+                $img_id ++;
+            }
+            ?>
+        </div>
+        <div>
+            <p> 玩法介绍：小时候玩的智力拼板,点击选择难度等级，然后将图片还原，就这么简单</p>
+        </div>
+        <div>
+            <p>难度选择:</p>
+            <input type="button" value="简单" class="disturb" data-value=5 />
+            <input type="button" value="一般" class="disturb" data-value=15 />
+            <input type="button" value="困难" class="disturb" data-value=50 />
+        </div>
+    </div>
+    <div>
+        <p>更多玩法正在开发，敬请期待</p>
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
