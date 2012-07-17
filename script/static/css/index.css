@@ -1,7 +1,14 @@
-html body div{
+html,body,div{
     margin:0px auto;
     text-align:center;
     padding:0px 0px;
+    font: 12px/1.125 Arial,Helvetica,sans-serif;
+}
+a {
+    text-decoration: none;
+}
+h1,h2,h3 {
+    font-family: '微软雅黑';
 }
 body {
     background: url(../image/dashboard_bg.png) repeat;

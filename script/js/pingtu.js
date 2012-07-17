@@ -24,6 +24,7 @@ function move(event){
     }
     if(verify()){
         var step_num = path_log.length - 1;
+        is_start = false;
         alert('你真是太厉害了,总共用了'+user_step_log.length+'步');
     }
 }
