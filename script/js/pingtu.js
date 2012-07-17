@@ -62,6 +62,7 @@ function disturb(e){
     for(var i=0;i<level;i++){
         disturb_one();
     }
+    user_step_log = new Array();
     is_start = true;
 }
 function disturb_one(e){
