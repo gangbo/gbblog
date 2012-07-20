@@ -28,7 +28,6 @@ function is_auth(){
             $_SESSION['oauth2']=$data;
         }
     }
-    var_dump($_SESSION);
     //判断用户是否授权
     if (empty($_SESSION['oauth2']["user_id"])) {//若没有获取到access token，则发起授权请求
         include "auth.php";
