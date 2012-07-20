@@ -6,7 +6,7 @@ var user_step_log = new Array();
 var is_start = false;
 path_log.push(IMG_ARR.length);
 $('.content img').bind('click',move);
-$('.disturb').bind('click',disturb);
+$('ul.disturb li a').bind('click',disturb);
 
 function move(event){
     if(!is_start){

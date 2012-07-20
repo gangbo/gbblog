@@ -2,6 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>未授权页面</title>
+<style>
+    body {
+        background: url(http://www.cdtv.cn/uploadfile/2010/0904/20100904054227888.jpg);
+    }
+</style>
 </head>
 
 <script src="http://tjs.sjs.sinajs.cn/t35/apps/opent/js/frames/client.js" language="JavaScript"></script>

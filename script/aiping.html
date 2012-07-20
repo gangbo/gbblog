@@ -33,15 +33,18 @@ var JSON = <?=json_encode($json) ?>;
                 $img_id ++;
             }
             ?>
-        </div>
-        <div>
-            <p><h2> 玩法介绍</h2>：小时候玩的智力拼板,点击选择难度等级，然后将图片还原，就这么简单</p>
+            <div style="float:none;clear:both;"></div>
         </div>
         <div>
             <p>难度选择:</p>
-            <input type="button" value="简单" class="disturb" data-value=5 />
-            <input type="button" value="一般" class="disturb" data-value=15 />
-            <input type="button" value="困难" class="disturb" data-value=50 />
+            <ul class="disturb coolHandLuke ">
+                <li><span class="green">&nbsp;</span><a href="#" data-value=5>简单</a></li>
+                <li><span class="yellow">&nbsp;</span><a href="#" data-value=15>一般</a></li>
+                <li><span class="red">&nbsp;</span><a href="#" data-value=50>困难</a></li>
+            </ul>
+        </div>
+        <div>
+            <p><h2> 玩法介绍</h2>：小时候玩的智力拼板,点击选择难度等级，然后将图片还原，就这么简单</p>
         </div>
     </div>
     <div>
