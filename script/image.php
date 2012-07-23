@@ -2,7 +2,7 @@
 require_once('./ThumbGen.class.php');
 $DIR_BIG = 'picture';
 $DIR_S = 'picture/s';
-$big_images = array('liuyan.jpg','aisi.jpg','b.jpg');
+$big_images = array('liuyan.jpg','aisi.jpg','b.jpg','d.jpg','dahuangfeng.jpg');
 $x = 3;
 $y = 3;
 foreach ( $big_images as $big_image){
@@ -11,9 +11,11 @@ foreach ( $big_images as $big_image){
     if( $width<=500 ){
         copy("$DIR_BIG/$big_image", "$DIR_S/$big_image");
     }else{
-        $height = $height*500/$width;
-
+        echo $width;
+        echo '===';
+        $height = intval($height*500/$width);
         /*先将大图缩小为宽度500-的*/
+        echo $height;
         $thumbGen->getThumbnail("$DIR_BIG/$big_image", 500, $height, 'jpg');
         $thumbGen->saveThumbnail("$DIR_S/$big_image");
     }
