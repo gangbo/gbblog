@@ -52,7 +52,7 @@ var JSON = <?=json_encode($json) ?>;
                 <li><span class="red">&nbsp;</span><a href="#" data-value=50>困难</a></li>
                 <li><span class="green">&nbsp;</span><a href="#" data-value=1>单步</a></li>
             </ul>
-            <p>序列号:<span id="serious"></span></p>
+            <p>序列号:<span id="serious">012345678</span>(好友将些序列好复制到下面的框后就可以和你玩一样的图了)</p>
             <p><input type=text name="sequence"><input type="button" id="sequence" value="生成"></p>
         </div>
         <div>
@@ -60,13 +60,15 @@ var JSON = <?=json_encode($json) ?>;
         </div>
     </div>
     <div>
-        <p>更多玩法正在开发，敬请期待</p>
+        <p>更多玩法正在开发，敬请期待
+        <wb:publish button_type="gray" button_text="与好友pk"  default_text="发现个好玩的小游戏，谁来和我pk下 http://apps.weibo.com/woaiping " >微博发布器</wb:publish></p>
         <p>开发者:<a href="http://weibo.com/gangbo" target="_blank">大隐-于市</a></p>
     </div>
 </div>
 </body>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script src="http://tjs.sjs.sinajs.cn/t35/apps/opent/js/frames/client.js" language="JavaScript"></script>
+<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=<?=WB_AKEY?>" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="js/pingtu.js"></script>
 
 <script>

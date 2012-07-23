@@ -38,6 +38,9 @@ div.content {
     float:left;
     width:125px;
 }
+#serious{
+    color:red;
+}
 
 .coolHandLuke { display: inline-block; margin: 0; }
 .coolHandLuke li,
