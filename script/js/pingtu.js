@@ -4,9 +4,10 @@ var COUNT_X = 3;
 var path_log = new Array();
 var user_step_log = new Array();
 var is_start = false;
-path_log.push(IMG_ARR.length);
+path_log.push(IMG_ARR.length-1);
 $('.content img').bind('click',move);
 $('ul.disturb li a').bind('click',disturb);
+$('#sequence').bind('click',sequenceByNum);
 
 function move(event){
     if(!is_start){
@@ -31,16 +32,18 @@ function move(event){
 function getNeighbors(element){
     var index = getIndex($(element).attr('id'));
     var neighbors = new Array();
-    if(index%COUNT_X != 1 ){
+    //左侧是否有邻居
+    if(index%COUNT_X != 0 ){
        neighbors.push(index-1);
     }
-    if(index%COUNT_X != 0 ){
+    //右侧是否有邻居
+    if(index%COUNT_X != 2 ){
        neighbors.push(index+1);
     }
-    if(index > COUNT_X ){
+    if(index > COUNT_X-1 ){
        neighbors.push(index-3);
     }
-    if(index <= IMG_ARR.length-3  ){
+    if(index < IMG_ARR.length-3  ){
        neighbors.push(index+3);
     }
     return neighbors;
@@ -59,12 +62,14 @@ function verify(){
     return true;
 }
 function disturb(e){
+    console.log('disturb...');
     var level = $(e.target).attr('data-value');
     for(var i=0;i<level;i++){
         disturb_one();
     }
     user_step_log = new Array();
     is_start = true;
+    getImageSerious();
 }
 function disturb_one(e){
     var space = $('img[src="xxx.gif"]');
@@ -88,6 +93,29 @@ function array_random(arr){
         if( random_index>=i*percent && random_index < (i+1)*percent){
             return arr[i];
         }
+    }
+}
+function getImageSerious(){
+    var serious = '';
+    var current_img_list = $('.img_list img');
+    for(var i=0;i<current_img_list.length;i++){
+        var src = $(current_img_list[i]).attr('src');
+        for(var j=0;j<IMG_ARR.length;j++){
+            if(IMG_ARR[j] == src){
+               serious +=j;
+            }
+        }
+    }
+    $('#serious').text(serious);
+}
+function sequenceByNum(){
+    var number_str = $(':input[name="sequence"]').val();
+    var img_list_html = '';
+    var j = 0;
+    for(var i=0; i<number_str.length;i++){
+        var img_id = '#img_'+j;
+        j++;
+        $(img_id).attr('src',IMG_ARR[number_str[i]]);
     }
 }
 

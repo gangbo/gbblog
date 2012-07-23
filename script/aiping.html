@@ -25,23 +25,35 @@ var JSON = <?=json_encode($json) ?>;
         <p><h1>智力拼板</h1></p>
     </div>
     <div class="content" >
+        <div>
+            <?php
+            foreach($thumb_images as $key=>$value) {
+                echo "<img scr='$value'>";
+            }
+            ?>
+        </div>
         <div class="img_list" style="width:339px;">
             <?php
-            $img_id = 1;
-            foreach($img_arr as $img){
-                echo "<img id='img_$img_id' src='$img'/> ";
-                $img_id ++;
+//            foreach($test_list as $k=>$v){
+ //               $img_id = 'img_'.($k+1);
+  //              echo "<img id='$img_id' scr='".$img_arr[$v]."' />";
+   //         }
+            foreach($img_arr as $key=>$img_src){
+                echo "<img id='img_$key' src='$img_src'/> ";
             }
             ?>
             <div style="float:none;clear:both;"></div>
         </div>
         <div>
             <p>难度选择:</p>
+            <p>序列号:<span id="serious"></span></p>
             <ul class="disturb coolHandLuke ">
                 <li><span class="green">&nbsp;</span><a href="#" data-value=5>简单</a></li>
                 <li><span class="yellow">&nbsp;</span><a href="#" data-value=15>一般</a></li>
                 <li><span class="red">&nbsp;</span><a href="#" data-value=50>困难</a></li>
+                <li><span class="red">&nbsp;</span><a href="#" data-value=1>一步</a></li>
             </ul>
+            <p><input type=text name="sequence"><input type="button" id="sequence" value="生成"></p>
         </div>
         <div>
             <p><h2> 玩法介绍</h2>：小时候玩的智力拼板,点击选择难度等级，然后将图片还原，就这么简单</p>

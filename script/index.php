@@ -3,25 +3,19 @@ session_start();
 header('Content-Type: text/html; charset=UTF-8');
 include('config.php');
 include('saetv2.ex.class.php');
+$DIR = 'picture';
 $json = array();
-/*
-$img_arr = array(
-    'part-0-0.jpg',
-    'part-0-1.jpg',
-    'part-0-2.jpg',
-    'part-1-0.jpg',
-    'part-1-1.jpg',
-    'part-1-2.jpg',
-    'part-2-0.jpg',
-    'part-2-1.jpg',
-    );
- */
 $big_image = array(
     0 => 'liuyan.jpg',
     1 => 'aisi.jpg'
 );
 @$image_id = $_GET['image_id'] ? $_GET['image_id'] : 0;
+$thumb_images = array_map(function($v) use ($DIR){
+                   return "$DIR/thumb_s_$v";
+                },$big_image);
+
 $img_arr = array();
+
 for($i=0;$i<8;$i++){
    $img_arr[] = "picture/part-$i-".$big_image[$image_id];
 }
