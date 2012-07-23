@@ -8,8 +8,8 @@
     float:left;
     border-style: solid;
     border-width:1px 1px 1px 1px;
-    width: 111px;
-    height: 166px;
+    width: <?php echo $image_size[0]/3 ?>px;
+    height: <?php echo $image_size[1]/3 ?>px;
 }
 </style>
 <link type="text/css" rel="stylesheet" href="static/css/index.css" />
@@ -25,14 +25,14 @@ var JSON = <?=json_encode($json) ?>;
         <p><h1>智力拼板</h1></p>
     </div>
     <div class="content" >
-        <div>
+        <div class="thumbs">
             <?php
             foreach($thumb_images as $key=>$value) {
-                echo "<img scr='$value'>";
+                echo "<a href='?image_id=$key'><img src='$value'></a>";
             }
             ?>
         </div>
-        <div class="img_list" style="width:339px;">
+        <div class="img_list" style="<?=$image_div_style?>;">
             <?php
 //            foreach($test_list as $k=>$v){
  //               $img_id = 'img_'.($k+1);

@@ -23,6 +23,7 @@ function move(event){
             user_step_log.push(neighbors[i]);
         }
     }
+    console.log('111');
     if(verify()){
         var step_num = path_log.length - 1;
         is_start = false;
@@ -54,8 +55,8 @@ function getIndex(str){
    return +id;
 }
 function verify(){
-    for( var i=1; i<IMG_ARR.length; i++){
-        if($('#img_'+i).attr('src') != IMG_ARR[i-1]){
+    for( var i=0; i<IMG_ARR.length-1; i++){
+        if($('#img_'+i).attr('src') != IMG_ARR[i]){
            return false;
         }
     }
@@ -116,6 +117,11 @@ function sequenceByNum(){
         var img_id = '#img_'+j;
         j++;
         $(img_id).attr('src',IMG_ARR[number_str[i]]);
+    }
+    is_start = true;
+}
+function checkSerious(serious){
+    for(var i=0;i<IMG_ARR.length;i++){
     }
 }
 

@@ -22,18 +22,22 @@ div.page {
     overflow: hidden;
 }
 div.content {
-    padding:10px;
+    padding:6px;
 }
 .img_list {
-    padding: 10px;
+    padding: 5px;
     background: #fc0;
+    overflow: hidden;
 }
 .header {
     width: 100%;
     background: url(../image/header_bg.png) top repeat-x;
     overflow: hidden;
 }
-
+.thumbs{
+    float:left;
+    width:125px;
+}
 
 .coolHandLuke { display: inline-block; margin: 0; }
 .coolHandLuke li,
@@ -49,7 +53,7 @@ div.content {
     border-radius: 4px;
     box-shadow: 1px 7px 2px 0 rgba(0,0,0,0.3);
     cursor: pointer;
-    margin-left: 10px;
+    margin-left: 5px;
     -webkit-transition: all 0.1s linear;
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
