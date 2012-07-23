@@ -3,7 +3,7 @@ session_start();
 header('Content-Type: text/html; charset=UTF-8');
 include('config.php');
 include('saetv2.ex.class.php');
-$DIR = 'picture';
+$DIR_S = 'picture/s';
 $json = array();
 $big_image = array(
     'liuyan.jpg',
@@ -11,16 +11,17 @@ $big_image = array(
     'b.jpg'
 );
 @$image_id = $_GET['image_id'] ? $_GET['image_id'] : 0;
-$image_size = getimagesize($DIR.'/'.$big_image[$image_id]);
+$image_size = getimagesize($DIR_S.'/'.$big_image[$image_id]);
 $image_div_style='width:'.($image_size[0]+7).'px;height:'.($image_size[1]+10).'px';
-$thumb_images = array_map(function($v) use ($DIR){
-                   return "$DIR/thumb_s_$v";
+
+$thumb_images = array_map(function($v) use ($DIR_S){
+                   return "$DIR_S/thumb_s_$v";
                 },$big_image);
 
 $img_arr = array();
 
 for($i=0;$i<8;$i++){
-   $img_arr[] = "picture/part-$i-".$big_image[$image_id];
+   $img_arr[] = "$DIR_S/part-$i-".$big_image[$image_id];
 }
 //从POST过来的signed_request中提取oauth2信息
 function is_auth(){

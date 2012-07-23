@@ -42,7 +42,7 @@ class ThumbGen
      *
      * @var integer
      */
-    protected $thumbnailQuality     = 80;
+    protected $thumbnailQuality     = 100;
 
     /**
      * Cache status
