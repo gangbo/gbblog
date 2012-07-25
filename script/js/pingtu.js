@@ -122,6 +122,7 @@ function sequenceByNum(){
 }
 function checkSerious(serious){
     for(var i=0;i<IMG_ARR.length;i++){
+
     }
 }
 
