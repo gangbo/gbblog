@@ -5,7 +5,7 @@ include('config.php');
 include('saetv2.ex.class.php');
 $DIR_S = 'picture/s';
 $json = array();
-$big_images = array('liuyan.jpg','aisi.jpg','b.jpg','d.jpg','dahuangfeng.jpg');
+$big_images = array('dahuangfeng.jpg','b.jpg','liuyan.jpg','aisi.jpg','d.jpg');
 @$image_id = $_GET['image_id'] ? $_GET['image_id'] : 0;
 $image_size = getimagesize($DIR_S.'/'.$big_images[$image_id]);
 $image_div_style='width:'.($image_size[0]+7).'px;height:'.($image_size[1]+10).'px';

@@ -23,7 +23,6 @@ function move(event){
             user_step_log.push(neighbors[i]);
         }
     }
-    console.log('111');
     if(verify()){
         var step_num = path_log.length - 1;
         is_start = false;
