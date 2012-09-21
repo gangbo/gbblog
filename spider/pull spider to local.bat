@@ -1,0 +1,1 @@
+D:\soft\putty\pscp.exe -r -pw gangbo123 gangbo.dai@10.132.64.207:/home/gangbo.dai/pinshici/* D:\msysgit\msysgit\www\gbblog\spider\

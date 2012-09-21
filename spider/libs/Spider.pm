@@ -42,9 +42,9 @@ sub fetch_page {
         $response = $ua->get( $self->{url} );
     }
     if ( $response->is_success ) {
-        print " read remote page and write cache\n\n";
-        $page_content = $response->decoded_content;
-        utf8::encode($page_content);
+        print "read remote page and write cache\n\n";
+        $page_content = $response->content;
+     #   utf8::encode($page_content);
         $self->_write_cache($page_content);
         return $page_content;
     }
