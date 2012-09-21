@@ -48,9 +48,9 @@ sub fetch_author_by_firstname {
     my ($keyword) = $url=~ m{\?xing=(.*)}gs;
     my $page_content = Spider->new($url,undef,undef)->fetch_page();
     ($page_content) = $page_content=~ m{<td width="600">(.*?)</table>}gs;
-    my @author_name = $page_content =~ m{<a href=".*?">(.*?)</a>}gs;
-    for (@author_name){
-    }
-    print Dumper \@author_name;
+    my @author_name = $page_content =~ m{(<a href=".*?">(.*?)</a>)}gs;
+    #my $uref = new Unicode::UTF8simple;
+    #    $_ =$uref->toUTF8("gb2312",$_);
+    return \@author_name;
 }
 
