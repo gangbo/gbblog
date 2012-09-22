@@ -26,8 +26,7 @@ use Data::Dumper;
 sub main {
     my $firstname_urls = &fetch_list_firstname();
     for my $firstname_url (@$firstname_urls) {
-        print $firstname_url;
-        &fetch_author_by_firstname($firstname_url);
+        print Dumper &fetch_author_by_firstname($firstname_url);
         die;
     }
 
@@ -48,9 +47,20 @@ sub fetch_author_by_firstname {
     my ($keyword) = $url=~ m{\?xing=(.*)}gs;
     my $page_content = Spider->new($url,undef,undef)->fetch_page();
     ($page_content) = $page_content=~ m{<td width="600">(.*?)</table>}gs;
-    my @author_name = $page_content =~ m{(<a href=".*?">(.*?)</a>)}gs;
-    #my $uref = new Unicode::UTF8simple;
+    my @author_name = $page_content =~ m{<a href="(.*?)">(.*?)</a>}gs;
+    my $uref = new Unicode::UTF8simple;
     #    $_ =$uref->toUTF8("gb2312",$_);
-    return \@author_name;
+    my $i = -1;
+    my @author_arr;
+    for(my $i=0;$i< scalar @author_name;$i++){
+        push @author_arr,{url=>$author_name[$i],name=>$uref->toUTF8('gb2312',$author_name[++$i])};
+    }
+#    my @author_arr = map { $i++; {name=>$_[$i],url=>$_[$i+1]} } @author_name;
+    return \@author_arr;
+}
+
+sub fetch_works_by_author_url {
+    my $works_list_url = shift;
+    my $page_content = Spider->new($url)->fetch_page();
 }
 

@@ -35,7 +35,7 @@ sub fetch_page {
     $ua->timeout(5);
     $ua->env_proxy;
     my $response;
-    if ( $self->{method} eq 'post' ) {
+    if ( $self->{method} && $self->{method} eq 'post' ) {
         $response = $ua->post( $self->{url}, $self->{form} );
     }
     else {
