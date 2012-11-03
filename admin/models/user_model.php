@@ -9,9 +9,13 @@ class User_model extends Ci_Model {
         parent::__construct();
     }
     function check_pwd ($user_name,$user_pwd){
-        $sql = "SELECT * FROM gb_users 
+        $sql = "SELECT * FROM gb_users
             WHERE user_name = ? AND user_password = ?";
         $query = $this->db->query($sql,array($user_name,$user_pwd));
-        var_dump($query->result());
+        if($result = $query->result()){
+            return $result[0];
+        }else{
+            return false;
+        }
     }
 }
