@@ -1,40 +1,47 @@
 <?php
 session_start();
+header('Content-Type: text/html; charset=UTF-8');
+include('config.php');
+include('saetv2.ex.class.php');
+$DIR_S = 'picture/s';
+$json = array();
+$big_images = array('dahuangfeng.jpg','b.jpg','liuyan.jpg','aisi.jpg','d.jpg');
+@$image_id = $_GET['image_id'] ? $_GET['image_id'] : 0;
+$image_size = getimagesize($DIR_S.'/'.$big_images[$image_id]);
+$image_div_style='width:'.($image_size[0]+7).'px;height:'.($image_size[1]+10).'px';
 
+$thumb_images = array_map(function($v) use ($DIR_S){
+                   return "$DIR_S/thumb_s_$v";
+                },$big_images);
 
-if($_GET['code']){
-    $url = 'http://aiping.sinaapp.com/callback.php?code='.$_GET['code'];
-    header("Location: $url");
+$img_arr = array();
+
+for($i=0;$i<8;$i++){
+   $img_arr[] = "$DIR_S/part-$i-".$big_images[$image_id];
 }
-
-include_once( 'config.php' );
-include_once( 'saetv2.ex.class.php' );
-
-$o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
-
-$code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
+//从POST过来的signed_request中提取oauth2信息
+function is_auth(){
+    if(!empty($_REQUEST["signed_request"])){
+        $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY  );
+        $data=$o->parseSignedRequest($_REQUEST["signed_request"]);
+        if($data=='-2'){
+             die('签名错误!');
+        }else{
+            $_SESSION['oauth2']=$data;
+        }
+    }
+    //判断用户是否授权
+    if (empty($_SESSION['oauth2']["user_id"])) {//若没有获取到access token，则发起授权请求
+        include "auth.php";
+        exit;
+    } else {//若已获取到access token，则加载应用信息
+        $c = new SaeTClientV2( WB_AKEY , WB_SKEY ,$_SESSION['oauth2']['oauth_token'] ,'' );
+        //$c->update('test');
+        //var_dump($c->user_timeline_by_id( $_SESSION['oauth2']["user_id"] , 1 , 50 , 0, 0, 0, 0, 1));
+    }
+}
+$json['is_auth'] = is_auth();
+//shuffle($img_arr);
+array_push($img_arr,'xxx.gif');
+include ('aiping.html');
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>新浪微博PHP SDK V2版 Demo - Powered by Sina App Engine</title>
-</head>
-
-<body>
-	<p>新浪微博PHP SDK由新浪SAE团队开发和维护，已集成在新浪SAE平台，SAE团队会负责对其进行维护和更新，平台开发者无需自行下载更新即可直接调用最新SDK，使用微博最新API。</p>
-	<p>本DEMO演示了PHP SDK的授权及接口调用方法，开发者可以在此基础上进行灵活多样的应用开发。</p>
-	<hr />
-	<p>什么是新浪SAE？</p>
-	<p>新浪SAE，全称Sina App Engine( <a href="http://sae.sina.com.cn" target="_blank">http://sae.sina.com.cn</a> )，是新浪研发中心推出的国内首个公有云计算平台。</p>
-	<p>SAE选择在国内流行最广的Web开发语言PHP作为首选的支持语言，并即将提供JAVA、Python语言支持。</p>
-	<p>应用开发者可以通过SVN、SDK或者在线代码编辑器进行开发、部署、调试，并可以通过应用成员管理、SVN代码管理方便地进行团队协作开发。</p>
-	<p>SAE为开发者提供MySQL、Storage、Memcache、KVDB、XHProf、定时任务、异步任务队列、计数器服务、分词服务、全文检索服务等众多服务，用户无需关心运维和一些高难度技术即可快速开发，极大提高开发效率。</p>
-	<p>SAE采用“所付即所用，所付仅所用”的计费理念，通过日志和统计中心精确的计算每个应用的资源消耗，进行精确计费。并且SAE会对通过实名认证的开发者赠送免费额度，使开发者可以零成本创业。</p>
-	<p>总而言之，SAE就是简单高效的分布式web服务开发、运行平台。</p>
-	<p>更多SAE相关内容，请点击 <a href="http://sae.sina.com.cn/?m=devcenter" target="_blank">http://sae.sina.com.cn/?m=devcenter</a> 。</p>
-	<!-- 授权按钮 -->
-    <p><a href="<?=$code_url?>"><img src="weibo_login.png" title="点击进入授权页面" alt="点击进入授权页面" border="0" /></a></p>
-
-</body>
-</html>
