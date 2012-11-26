@@ -13,8 +13,8 @@
 <script>
 function authLoad(){
     App.AuthDialog.show({
-        client_id : '<?=WB_AKEY;?>',    //必选，appkey
-        redirect_uri : '<?=CANVAS_PAGE;?>',     //必选，授权后的回调地址
+        client_id : '<?php echo WB_AKEY;?>',    //必选，appkey
+        redirect_uri : '<?php echo CANVAS_PAGE;?>',     //必选，授权后的回调地址
         height: 120    //可选，默认距顶端120px
     });
 }

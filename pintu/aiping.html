@@ -15,8 +15,8 @@
 <link type="text/css" rel="stylesheet" href="static/css/index.css" />
 
 <script>
-var IMG_ARR = <?= json_encode($img_arr)?>;
-var JSON = <?=json_encode($json) ?>;
+var IMG_ARR = <?php echo json_encode($img_arr)?>;
+var JSON = <?php echo json_encode($json) ?>;
 </script>
 </head>
 <body>
@@ -32,7 +32,7 @@ var JSON = <?=json_encode($json) ?>;
             }
             ?>
         </div>
-        <div class="img_list" style="<?=$image_div_style?>;">
+        <div class="img_list" style="<?php echo $image_div_style?>;">
             <?php
             foreach($img_arr as $key=>$img_src){
                 echo "<img id='img_$key' src='$img_src'/> ";
@@ -64,7 +64,7 @@ var JSON = <?=json_encode($json) ?>;
 </body>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script src="http://tjs.sjs.sinajs.cn/t35/apps/opent/js/frames/client.js" language="JavaScript"></script>
-<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=<?=WB_AKEY?>" type="text/javascript" charset="utf-8"></script>
+<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=<?php echo WB_AKEY?>" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="js/pingtu.js"></script>
 
 <script>
