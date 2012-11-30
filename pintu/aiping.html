@@ -69,7 +69,10 @@ var JSON = <?php echo json_encode($json) ?>;
 
 <script>
 $(function(){
-
+   var cookieStr = document.cookie;
+   if(!cookieStr){
+       parent.top.location.href = 'http://game.daigangbo.cn/pintu/';
+   }
 });
 </script>
 </html>
