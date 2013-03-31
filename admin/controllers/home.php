@@ -4,7 +4,6 @@ require 'Base_Controller.php';
 
 class Home extends Base_Controller{
 
-
     public function index() {
         $this->load->view('login',$_POST);
     }

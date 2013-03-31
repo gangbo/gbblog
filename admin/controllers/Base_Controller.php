@@ -7,7 +7,6 @@ class Base_Controller extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        var_dump($this->session->userdata);
         $this->output->enable_profiler(TRUE);
     }
 
